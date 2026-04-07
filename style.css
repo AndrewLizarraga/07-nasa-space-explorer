@@ -115,8 +115,8 @@ button {
 
 /* Button specific */
 button {
-  background-color: #fc3d21;
-  border-color: #fc3d21;
+  background-color: #c62d1f;
+  border-color: #c62d1f;
   color: #ffffff;
   cursor: pointer;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
