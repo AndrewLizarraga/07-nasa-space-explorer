@@ -22,8 +22,8 @@
 /* Base page styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: var(--nasa-bg-light);
-  color: var(--nasa-text-dark);
+  background-color: #323a45;
+  color: #ffffff;
   padding: 20px;
 }
 
@@ -31,6 +31,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  background-color: #323a45;
 }
 
 /* Header */
@@ -38,17 +39,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--nasa-blue-brand);
+  background-color: #061f4a;
   border-radius: 8px;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 h1 {
   font-family: Verdana, sans-serif;
   font-weight: bold;
-  color: var(--nasa-white);
+  color: #ffffff;
 }
 
 /* Logo */
@@ -83,9 +85,9 @@ h1 {
   margin: 0 20px 20px;
   padding: 16px;
   border-radius: 10px;
-  border: 1px solid var(--nasa-blue-brand);
-  background: linear-gradient(160deg, rgba(6, 31, 74, 0.95), rgba(11, 61, 145, 0.95));
-  color: var(--nasa-white);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #1f2a36;
+  color: #ffffff;
 }
 
 .space-fact-title {
@@ -102,9 +104,9 @@ input[type="date"],
 button {
   font-family: Arial, sans-serif;
   font-weight: normal;
-  color: var(--nasa-text-dark);
+  color: #ffffff;
   padding: 10px 15px;
-  border: 1px solid var(--nasa-gray-soft);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   font-size: 16px;
   line-height: 1.4;
@@ -113,13 +115,28 @@ button {
 
 /* Button specific */
 button {
-  background-color: var(--nasa-blue-primary);
-  border-color: var(--nasa-blue-brand);
-  color: var(--nasa-white);
+  background-color: #fc3d21;
+  border-color: #fc3d21;
+  color: #ffffff;
   cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 button:hover {
-  background-color: var(--nasa-blue-brand);
+  background-color: #e63015;
+  box-shadow: 0 4px 12px rgba(252, 61, 33, 0.3);
+}
+
+/* Date input styling */
+input[type="date"] {
+  background-color: #1f2a36;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="date"]:focus {
+  outline: 2px solid #105bd8;
+  outline-offset: 2px;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Stack horizontally on wider screens */
@@ -142,6 +159,7 @@ button:hover {
   gap: 20px;
   padding: 20px;
   justify-content: center;
+  background-color: #323a45;
 }
 
 /* Gallery items */
@@ -149,20 +167,21 @@ button:hover {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
   max-width: 100%;
-  background: var(--nasa-white);
-  border: 1px solid var(--nasa-gray-soft);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(50, 58, 69, 0.15);
+  background: #1f2a36;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .gallery-item:hover {
-  transform: translateY(-4px) scale(1.4);
-  box-shadow: 0 8px 20px rgba(50, 58, 69, 0.24);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Three columns on wider screens */
@@ -177,53 +196,100 @@ button:hover {
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
 .image-card {
-  background: transparent;
+  background: #1f2a36;
   border: 0;
   box-shadow: none;
   padding: 0;
+  transition: transform 0.3s ease-in, box-shadow 0.3s ease-in;
 }
 
 .image-card:hover {
-  transform: translateY(-2px);
-  box-shadow: none;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.image-card:hover img {
+  transform: none;
 }
 
 .image-card img {
-  border: 1px solid var(--nasa-gray-soft);
-  box-shadow: 0 2px 8px rgba(50, 58, 69, 0.15);
+  border: 0;
+  box-shadow: none;
+}
+
+/* Video thumbnail link with overlay */
+.video-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-thumb .video-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.video-thumb .video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.video-thumb:hover .video-play {
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .gallery-item iframe {
   width: 100%;
   height: 200px;
   border: 0;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .video-placeholder {
   position: relative;
   width: 100%;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 8px;
   text-decoration: none;
-  color: var(--nasa-white);
-  background: linear-gradient(160deg, var(--nasa-blue-dark), var(--nasa-blue-brand));
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 12px rgba(6, 31, 74, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #ffffff;
+  background: linear-gradient(160deg, #1a2332, #1f2a36);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .video-placeholder:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(6, 31, 74, 0.45);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .video-play {
@@ -245,25 +311,26 @@ button:hover {
   letter-spacing: 0.08em;
   padding: 4px 8px;
   border-radius: 999px;
-  background: var(--nasa-accent-red);
-  color: var(--nasa-white);
+  background: #fc3d21;
+  color: #ffffff;
 }
 
 .gallery-item h3 {
   margin-top: 10px;
   font-size: 16px;
-  color: var(--nasa-blue-dark);
+  color: #105bd8;
 }
 
 .video-link {
   margin-top: 8px;
-  color: var(--nasa-accent-medium);
+  color: #105bd8;
   text-decoration: none;
   font-size: 14px;
+  transition: color 0.2s ease;
 }
 
 .video-link:hover {
-  color: var(--nasa-accent-light);
+  color: #aeb0b5;
   text-decoration: underline;
 }
 
@@ -271,6 +338,7 @@ button:hover {
   margin-top: 10px;
   padding: 5px;
   font-size: 14px;
+  color: #aeb0b5;
 }
 
 /* Pagination controls */
@@ -286,24 +354,24 @@ button:hover {
   width: auto;
   min-width: 44px;
   padding: 8px 12px;
-  border: 1px solid var(--nasa-gray-soft);
-  background-color: var(--nasa-white);
-  color: var(--nasa-blue-brand);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  color: #aeb0b5;
   border-radius: 999px;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .pagination-button:hover {
-  background-color: var(--nasa-blue-primary);
-  color: var(--nasa-white);
-  border-color: var(--nasa-blue-primary);
+  background-color: #105bd8;
+  color: #ffffff;
+  border-color: #105bd8;
 }
 
 .pagination-button.active {
-  background-color: var(--nasa-blue-brand);
-  color: var(--nasa-white);
-  border-color: var(--nasa-blue-brand);
+  background-color: #fc3d21;
+  color: #ffffff;
+  border-color: #fc3d21;
 }
 
 .pagination-button:disabled {
@@ -316,7 +384,7 @@ button:hover {
   flex: 1 1 100%;
   text-align: center;
   padding: 40px;
-  color: var(--nasa-bg-dark);
+  color: #aeb0b5;
 }
 
 .placeholder-icon {
@@ -336,7 +404,7 @@ button:hover {
 #modal {
   position: fixed;
   inset: 0;
-  background: rgba(6, 31, 74, 0.84);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -350,11 +418,12 @@ button:hover {
   max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--nasa-white);
-  border: 1px solid var(--nasa-blue-brand);
-  border-radius: 10px;
-  box-shadow: 0 12px 32px rgba(6, 31, 74, 0.35);
+  background: #1f2a36;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(16, 91, 216, 0.25), 0 4px 16px rgba(0, 0, 0, 0.4);
   padding: 20px;
+  color: #ffffff;
 }
 
 .modal-close {
@@ -362,12 +431,13 @@ button:hover {
   top: 10px;
   right: 14px;
   font-size: 30px;
-  color: var(--nasa-blue-primary);
+  color: #105bd8;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .modal-close:hover {
-  color: var(--nasa-blue-dark);
+  color: #fc3d21;
 }
 
 #modal-image {
@@ -380,33 +450,34 @@ button:hover {
 
 #modal-title {
   margin-bottom: 6px;
-  color: var(--nasa-blue-dark);
+  color: #105bd8;
 }
 
 #modal-date {
-  color: var(--nasa-blue-brand);
+  color: #aeb0b5;
   margin-bottom: 12px;
+  font-size: 14px;
 }
 
 .modal-description-heading {
-  color: var(--nasa-blue-dark);
+  color: #105bd8;
   font-family: Verdana, sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
   padding-top: 8px;
-  border-top: 1px solid var(--nasa-gray-soft);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #modal-description {
-  color: var(--nasa-text-dark);
+  color: #ffffff;
   line-height: 1.6;
 }
 
 .modal-copyright {
   margin-top: 16px;
   padding-top: 10px;
-  border-top: 1px solid var(--nasa-gray-soft);
-  color: var(--nasa-blue-brand);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aeb0b5;
   font-size: 13px;
 }

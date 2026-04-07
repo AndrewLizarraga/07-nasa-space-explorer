@@ -104,7 +104,8 @@ const renderRandomSpaceFact = () => {
 
   const factText = document.createElement('p');
   factText.classList.add('space-fact-text');
-  factText.textContent = randomFact;
+  // Add a lightbulb icon before each fun fact.
+  factText.textContent = `💡 ${randomFact}`;
 
   spaceFactSection.innerHTML = '';
   spaceFactSection.appendChild(factTitle);
@@ -161,19 +162,37 @@ const renderGallery = () => {
     imageCard.classList.add('gallery-item');
 
     if (card.media_type === 'video') {
-      const isYouTube = card.url.includes('youtube.com') || card.url.includes('youtu.be');
-      imageCard.innerHTML = `
-        <a
-          class="video-placeholder"
-          href="${card.url}"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Watch APOD video">
-          <span class="video-badge">VIDEO</span>
-          <span class="video-play">▶</span>
-          <span class="video-text">Watch APOD Video${isYouTube ? ' YouTube' : ''}</span>
-        </a>
-      `;
+      const previewImage = card.thumbnail_url;
+      // Log thumbnail URL for debugging
+      console.log(`Video: ${card.title}`, { thumbnail_url: previewImage, card });
+
+      if (previewImage) {
+        imageCard.innerHTML = `
+          <a
+            class="video-thumb"
+            href="${card.url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch APOD video">
+            <img src="${previewImage}" alt="${card.title}">
+            <span class="video-badge">VIDEO</span>
+            <span class="video-play">▶</span>
+          </a>
+        `;
+      } else {
+        imageCard.innerHTML = `
+          <a
+            class="video-placeholder"
+            href="${card.url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch APOD video">
+            <span class="video-badge">VIDEO</span>
+            <span class="video-play">▶</span>
+            <span class="video-text">Watch APOD Video</span>
+          </a>
+        `;
+      }
     } else {
       imageCard.classList.add('image-card');
       const previewImage = card.thumbnail_url || card.hdurl || card.url;
